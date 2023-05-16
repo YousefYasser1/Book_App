@@ -1,0 +1,18 @@
+﻿@model BooK
+@{
+    ViewData["Title"] = Model.Author;
+}
+
+<table class="table table-striped">
+    <tr>   <th>Author</th>   <th>Description</th> <th>Rate</th> <th>DateOfCreate</th> </tr>
+
+    <tr>
+        
+        <td>@Model.Author</td>
+
+        <td>@Model.Description</td>
+        <td>@Model.Rate</td>
+        <td>@Model.CreatedOn</td>
+
+    </tr>
+</table>

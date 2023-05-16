@@ -1,0 +1,54 @@
+﻿@model IEnumerable<BooK>
+@{
+    ViewData["Title"] = "List Book";
+}
+
+<h2>
+    Books
+</h2>
+<form class="form-check-inline" asp-action="Search" method="post">
+    <input class="form-control" type="text"  name="term" placeholder="Search..."/>
+    <button  class="btn btn-outline-success mt-2" type="submit"><i class="bi bi-search"></i>Search</button>
+</form>
+<br />
+<a class="btn btn-primary mt-2" asp-action="Create">
+    <i class="bi bi-plus-circle-dotted"></i>
+    Add Book
+    </a>
+<a class="btn btn-secondary  mt-2" asp-action="Create" asp-controller="Categories">
+    <i class="bi bi-plus-circle-dotted"></i>
+    Add Category
+</a>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning" role="alert">
+        <i class="bi bi-exclamation-octagon-fill"></i>
+      No Books Yet
+    </div>
+}
+else
+{
+  <table class="table table-striped">  
+      <tr>   <th>Author</th>  <th>Category</th> <th>Description</th> <th>Rate</th> <th>DateOfCreate</th> <th>Edit</th> <th>Delete</th> <th>Details</th></tr>
+
+      @foreach (var item in Model)
+        {
+            <tr>
+                
+                <td>@item.Author</td>
+                <td>@item.Category.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Rate</td>
+                <td>@item.CreatedOn</td>
+                <td><a asp-action="Edit" class="btn btn-success" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i> Edit</a></td>
+                <td><a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="bi bi-trash3"></i> Delete</a></td>
+                <td><a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.Id"><i class="bi bi-book"></i> Details</a></td>
+
+            </tr>
+        }
+
+  </table>
+}
+
+
